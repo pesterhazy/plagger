@@ -1,0 +1,5 @@
+# http://de.sitestat.com/sueddeutsche/sueddeutsche/s?onclick_rss.feed.muenchen&amp;ns_type=clickin&amp;ns_source=nachrichten_muenchen&amp;ns_url=http://www.sueddeutsche.de/muenchen/796/481269/text/ 
+#
+author: Tatsuhiko Miyagawa
+match: http://de\.sitestat\.com/
+query_param: ns_url

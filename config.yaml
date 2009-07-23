@@ -1,0 +1,30 @@
+global:
+  # Make plagger more verbose than default
+  log:
+    level: debug
+
+plugins:
+  # Subscribe to a couple of "My Feeds" on the web
+  # They could be either Feeds URL or Blog URL (with Auto-Discovery support)
+  - module: Subscription::Config
+    config:
+      feed:
+        - http://www.sueddeutsche.de/app/service/rss/alles/rss.xml
+        - http://rss.sueddeutsche.de/rss/Politik
+        - http://rss.sueddeutsche.de/rss/Topthemen
+        - http://rss.sueddeutsche.de/rss/Wirtschaft
+        - http://rss.sueddeutsche.de/rss/München
+        - http://rss.sueddeutsche.de/rss/Leben%20&%20Stil
+
+  # Load 'Bundle' planet plugins
+  - module: Publish::Feed
+    config:
+      format: RSS
+      dir: /home/loevborg/public_html/feed
+      filename: my_%t.rss
+
+  - module: Filter::TruePermalink
+
+  - module: Filter::EntryFullText
+    config:
+      force_upgrade: 1
