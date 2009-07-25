@@ -11,7 +11,7 @@ sub extract {
   my $str = $args->{content};
   my $body;
 
-  if ($str =~ m#<div class="artikelheader clr">.*?(<div class="main content.*?)(?:<table class="bgf2f2f2 absatz">|<div class="artikelliste">|<div id="themenbox"|<div id="artikelfoot")#ms) {
+  if ($str =~ m#<div class="artikelheader clr.*?(<div class="main content.*?)(?:<table class="bgf2f2f2 absatz">|<div class="artikelliste">|<div id="themenbox"|<div id="artikelfoot")#ms) {
     $body = $1;
   } elsif ($str =~ m#(<div class="main content.*?)(?:<table class="bgf2f2f2 absatz">|<div class="artikelliste">|<div id="themenbox"|<div id="artikelfoot")#ms) {
     $body = $1;
