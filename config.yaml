@@ -1,7 +1,9 @@
 global:
+  user_agent:
+    agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; ja; rv:1.8.0.7) Gecko/20060909 Firefox/1.5.0.7
   # Make plagger more verbose than default
   log:
-    level: debug
+    level: warn
 
 plugins:
   # Subscribe to a couple of "My Feeds" on the web
@@ -9,6 +11,8 @@ plugins:
   - module: Subscription::Config
     config:
       feed:
+        - http://www.faz.net/s/RubCC21B04EE95145B3AC877C874FB1B611/Tpl~Epartner~SRss_.xml
+        - http://www.faz.net/s/RubA24ECD630CAE40E483841DB7D16F4211/Tpl~Epartner~SRss_.xml
         - http://www.sueddeutsche.de/app/service/rss/alles/rss.xml
         - http://rss.sueddeutsche.de/rss/Politik
         - http://rss.sueddeutsche.de/rss/Topthemen
