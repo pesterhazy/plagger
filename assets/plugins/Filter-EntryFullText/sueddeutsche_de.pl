@@ -16,6 +16,9 @@ sub extract {
   } elsif ($str =~ m#(<div class="main content.*?)(?:<table class="bgf2f2f2 absatz">|<div class="artikelliste">|<div id="themenbox"|<div id="artikelfoot")#ms) {
     $body = $1;
   }
+  elsif ($str =~ m#(<div id="contentcolumn" class="entry-content" role="main">.*?)(?:<table class="bgf2f2f2 absatz">|<div class="artikelliste">|<div id="themenbox"|<div id="artikelfoot")#ms) {
+    $body = $1;
+  }
   else {
     if (defined $args->{entry}) {
       print STDERR "WARNING: Did not match: " . $args->{entry}->permalink . "\n";
@@ -40,7 +43,7 @@ sub extract {
   $body = $scrubber->scrub($body);
 
   if ($str =~ m#<!-- paging -->#ms) {
-    $body .= "<p>Mehr Seiten verfügbar...</p>\n";
+    $body .= "<p>Mehr Seiten ...</p>\n";
   }
   return($body);
 }
