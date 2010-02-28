@@ -5,7 +5,11 @@ use File::Slurp;
 
 sub handle {
     my($self, $args) = @_;
+
+#    print $args->{entry}->permalink . "\n"; # for debugging
+
     $args->{entry}->permalink =~ m!http://.*\.faz\.net!;
+#    $args->{entry}->permalink eq 'http://www.faz.net/s/RubDA5AEED6E6AB48F9A65EA41107C817DD/Doc~E860009E060A34688A7E7B774EA57AAB1~ATpl~Ecommon~Sspezial.html?rss_feuilleton';
 }
 
 sub extract {
@@ -29,14 +33,6 @@ sub extract {
     }
   }
   my $anke = $nodes->get_node(1);
-
-#  my $s=$anke->as_HTML();
-#  unless ( $s =~ /Konfuzius/i ) {
-#    print "Skipping\n";
-#    return;
-#  }
-#  print "found\n";
-#  write_file( "/tmp/in.html", $s);
 
   my @to_delete = (
     './div[@id="ArtikelServicesMenu"]',
@@ -69,9 +65,14 @@ sub extract {
   $body = $scrubber->scrub($body);
 
   $body =~ s/&#132;/&bdquo;/g;
+  $body =~ s/&#(147|148);/"/g;
+  $body =~ s/&#39;/'/g;
+
+  while ( $body =~ m/(&#x?\d+;)/g ) {
+    warn "suspicious html entity $1\n";
+  }
 
 #  write_file("/tmp/out.html",$body);
-#  print($body);
 
   return($body);
 }
